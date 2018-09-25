@@ -1,4 +1,4 @@
-import { IUserTheme } from "../RootContainer";
+import { IUserTheme } from '../RootContainer';
 
 export const defaultUserTheme: IUserTheme = {
   // Size
@@ -6,8 +6,8 @@ export const defaultUserTheme: IUserTheme = {
   fontSizeLg: 20,
   rythmRatio: 1.25,
   // Family
-  fontFamilyBody: "Roboto",
-  familyCategoryBody: "sans-serif",
+  fontFamilyBody: 'Roboto',
+  familyCategoryBody: 'sans-serif',
   // Tag-specific
   body: {
     maxWidth: 700,
@@ -18,8 +18,8 @@ export const defaultUserTheme: IUserTheme = {
   headingsLg: Array(4).fill({}),
   // General
   colors: {
-    text: "#333"
-  }
+    text: '#333',
+  },
 };
 
 export default defaultUserTheme;

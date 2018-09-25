@@ -1,17 +1,17 @@
-import { createGlobalStyle } from "styled-components";
-import { IHeadingTypography, IUserTheme } from "../RootContainer";
-import { baseStyles } from "./baseStyles";
+import { createGlobalStyle } from 'styled-components';
+import { IHeadingTypography, IUserTheme } from '../RootContainer';
+import { baseStyles } from './baseStyles';
 
 export const defaultHeadingMgTop = 1.5;
 export const defaultHeadingMgBottom = 0.5;
 
 const fontFallbacks = {
-  "sans-serif":
+  'sans-serif':
     "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
   serif:
     'Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif',
   monospace:
-    'Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace'
+    'Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace',
 };
 
 export const getHeadingFontSize = (
@@ -43,7 +43,7 @@ const getHeadingStyles = (
       ? `${heading.marginBottom}px`
       : `${defaultHeadingMgBottom}rem`
   };
-      line-height: ${heading.lineHeight || "inherit"};
+      line-height: ${heading.lineHeight || 'inherit'};
     }
   `.trim();
 };
@@ -68,7 +68,7 @@ export const GlobalUserStyles = createGlobalStyle`
       font-size: ${theme.fontSize}px;
       font-family: '${theme.fontFamilyBody}', ${fontFallbacks[
     theme.familyCategoryBody
-  ] || fontFallbacks["sans-serif"]};
+  ] || fontFallbacks['sans-serif']};
       color: ${theme.colors.text};
     }
     p, ul, ol {
@@ -84,10 +84,10 @@ export const GlobalUserStyles = createGlobalStyle`
         theme.fontFamilyHeading && theme.familyCategoryHeading
           ? `'${theme.fontFamilyHeading}', ${fontFallbacks[
               theme.familyCategoryHeading
-            ] || fontFallbacks["sans-serif"]}`
-          : "inherit"
+            ] || fontFallbacks['sans-serif']}`
+          : 'inherit'
       };
-      color: ${theme.colors.heading || "inherit"};
+      color: ${theme.colors.heading || 'inherit'};
     }
     // Paragraphs coming right after headings should have margin-top: 0
     // to give the margin control to the heading
@@ -98,7 +98,7 @@ export const GlobalUserStyles = createGlobalStyle`
       // For each heading, return their font-size, margin and line-height
       theme.headings
         .map((heading, i) => getHeadingStyles(heading, i, theme))
-        .join("\n")
+        .join('\n')
     };
     @media screen and (min-width: 500px) {
       :root {
@@ -112,7 +112,7 @@ export const GlobalUserStyles = createGlobalStyle`
         // For each heading, return their font-size, margin and line-height
         theme.headingsLg
           .map((heading, i) => getHeadingStyles(heading, i, theme))
-          .join("\n")
+          .join('\n')
       };
     }
   `}}

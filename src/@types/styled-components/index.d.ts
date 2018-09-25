@@ -7,8 +7,8 @@
 // TypeScript Version: 2.8
 
 /// <reference types="node" />
-declare module "styled-components" {
-  import * as React from "react";
+declare module 'styled-components' {
+  import * as React from 'react';
 
   export interface ThemeProps<T> {
     theme: T;
@@ -143,7 +143,7 @@ declare module "styled-components" {
   type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
   type DiffBetween<T, U> = Pick<T, Diff<keyof T, keyof U>> &
     Pick<U, Diff<keyof U, keyof T>>;
-  type WithOptionalTheme<P extends { theme?: T }, T> = Omit<P, "theme"> & {
+  type WithOptionalTheme<P extends { theme?: T }, T> = Omit<P, 'theme'> & {
     theme?: T;
   };
 

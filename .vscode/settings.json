@@ -1,0 +1,10 @@
+{
+  "editor.tabSize": 2,
+  "editor.wordWrap": "bounded",
+  "editor.wordWrapColumn": 80,
+  "breadcrumbs.enabled": true,
+  "markdown.preview.breaks": true,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#3742fa"
+  }
+}

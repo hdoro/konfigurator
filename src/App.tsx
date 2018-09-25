@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: white;
   }
-`
+`;
 
 class App extends React.Component {
   public render() {

@@ -1,10 +1,10 @@
-import { Router } from "@reach/router";
-import * as queryString from "querystring";
-import * as React from "react";
-import defaultMarkdown from "./defaultMarkdown";
-import { DefaultRoute } from "./routes/DefaultRoute";
-import { EditorRoute } from "./routes/EditorRoute";
-import { defaultUserTheme } from "./styles/defaultUserTheme";
+import { Router } from '@reach/router';
+import * as queryString from 'querystring';
+import * as React from 'react';
+import defaultMarkdown from './defaultMarkdown';
+import { DefaultRoute } from './routes/DefaultRoute';
+import { EditorRoute } from './routes/EditorRoute';
+import { defaultUserTheme } from './styles/defaultUserTheme';
 
 export enum EConfigSpaces {
   typography,
@@ -61,13 +61,13 @@ export class RootContainer extends React.Component<{}, IRootContainerState> {
   public state = {
     content: defaultMarkdown,
     userTheme: defaultUserTheme,
-    activeConfigSpace: undefined
+    activeConfigSpace: undefined,
   };
 
   public changeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     this.setState({
-      content: e.currentTarget.value
+      content: e.currentTarget.value,
     });
     localStorage.setItem('konfiguratorContent', e.currentTarget.value);
   };
@@ -91,7 +91,7 @@ export class RootContainer extends React.Component<{}, IRootContainerState> {
             ...prevState.userTheme[splittedPropName[0]],
             [splittedPropName[1]]: value,
           },
-        }
+        },
       }));
     } else {
       this.setState(prevState => ({
@@ -99,10 +99,10 @@ export class RootContainer extends React.Component<{}, IRootContainerState> {
         userTheme: {
           ...prevState.userTheme,
           [propName]: value,
-        }
+        },
       }));
     }
-  }
+  };
 
   public changeThemeRoot = (propName: string) => (
     e: React.ChangeEvent<HTMLInputElement>
@@ -113,8 +113,8 @@ export class RootContainer extends React.Component<{}, IRootContainerState> {
       ...prevState,
       userTheme: {
         ...prevState.userTheme,
-        [propName]: e.target.value
-      }
+        [propName]: e.target.value,
+      },
     }));
   };
 
@@ -122,7 +122,7 @@ export class RootContainer extends React.Component<{}, IRootContainerState> {
     activeConfigSpace: EConfigSpaces | undefined
   ) => (e: React.MouseEvent<HTMLButtonElement>) => {
     this.setState({
-      activeConfigSpace
+      activeConfigSpace,
     });
   };
 
@@ -133,10 +133,13 @@ export class RootContainer extends React.Component<{}, IRootContainerState> {
     });
     localStorage.removeItem('konfiguratorContent');
     localStorage.removeItem('konfiguratorTheme');
-  }
+  };
 
   public componentDidUpdate() {
-    localStorage.setItem('konfiguratorTheme', JSON.stringify(this.state.userTheme));
+    localStorage.setItem(
+      'konfiguratorTheme',
+      JSON.stringify(this.state.userTheme)
+    );
   }
 
   public componentDidMount() {
@@ -145,19 +148,21 @@ export class RootContainer extends React.Component<{}, IRootContainerState> {
     if (storedContent) {
       this.setState({
         content: storedContent,
-      })
+      });
     }
     if (storedTheme) {
       this.setState({
         userTheme: JSON.parse(storedTheme),
-      })
+      });
     }
     if (window.location.search) {
-      const sharedTheme: any = queryString.parse(window.location.search.substr(1));
+      const sharedTheme: any = queryString.parse(
+        window.location.search.substr(1)
+      );
       if (sharedTheme.theme) {
         this.setState({
           userTheme: JSON.parse(sharedTheme.theme),
-        })
+        });
       }
       window.location.search = '';
     }

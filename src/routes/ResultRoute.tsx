@@ -1,13 +1,13 @@
-import { Button } from "@material-ui/core";
-import LaptopIcon from "@material-ui/icons/LaptopRounded";
-import PhoneIcon from "@material-ui/icons/PhoneIphoneRounded";
-import { RouteComponentProps } from "@reach/router";
-import * as React from "react";
-import Frame, { FrameContextConsumer } from "react-frame-component";
-import * as Markdown from "react-markdown";
-import styled, { StyleSheetManager } from "styled-components";
-import { IUserTheme } from "../RootContainer";
-import { GlobalUserStyles } from "../styles/userTheme";
+import { Button } from '@material-ui/core';
+import LaptopIcon from '@material-ui/icons/LaptopRounded';
+import PhoneIcon from '@material-ui/icons/PhoneIphoneRounded';
+import { RouteComponentProps } from '@reach/router';
+import * as React from 'react';
+import Frame, { FrameContextConsumer } from 'react-frame-component';
+import * as Markdown from 'react-markdown';
+import styled, { StyleSheetManager } from 'styled-components';
+import { IUserTheme } from '../RootContainer';
+import { GlobalUserStyles } from '../styles/userTheme';
 
 export interface IResultsDisplayProps extends RouteComponentProps {
   content: string;
@@ -30,9 +30,9 @@ const Wrapper = styled.main`
   flex-grow: 1;
   min-height: 80vh;
   ${(props: { isMobile: boolean; maxWidth: number }) => `
-    max-width: ${props.isMobile ? "320px" : `${props.maxWidth}px`};
-    height: ${props.isMobile ? "568px" : "auto"};
-    align-self: ${props.isMobile ? "center" : "stretch"};
+    max-width: ${props.isMobile ? '320px' : `${props.maxWidth}px`};
+    height: ${props.isMobile ? '568px' : 'auto'};
+    align-self: ${props.isMobile ? 'center' : 'stretch'};
   `};
   > iframe {
     width: 100%;
@@ -47,19 +47,19 @@ export class ResultRoute extends React.Component<
   IResultsDisplayState
 > {
   public state = {
-    isMobile: false
+    isMobile: false,
   };
 
   public toggleMobile = () => {
     this.setState(prevState => ({
-      isMobile: !prevState.isMobile
+      isMobile: !prevState.isMobile,
     }));
   };
 
   public render() {
     const {
       props,
-      state: { isMobile }
+      state: { isMobile },
     } = this;
     return (
       <DisplayContainer>
@@ -80,7 +80,12 @@ export class ResultRoute extends React.Component<
         <Button
           variant="fab"
           onClick={this.toggleMobile}
-          style={{ position: "fixed", bottom: "2rem", right: "2rem", zIndex: 2000 }}
+          style={{
+            position: 'fixed',
+            bottom: '2rem',
+            right: '2rem',
+            zIndex: 2000,
+          }}
           color="secondary"
         >
           {isMobile ? <LaptopIcon /> : <PhoneIcon />}

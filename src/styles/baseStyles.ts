@@ -1,4 +1,4 @@
-import { appTheme } from "./appTheme";
+import { appTheme } from './appTheme';
 
 export const baseStyles = `
   *, *::before, *::after {
@@ -41,6 +41,6 @@ export const baseStyles = `
   .twitter-picker {
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
-`
+`;
 
 export default baseStyles;

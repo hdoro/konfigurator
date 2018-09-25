@@ -21,7 +21,15 @@ const Container = styled.div`
 export const EditorRoute: React.SFC<IEditorProps> = props => {
   return (
     <Container>
-      <Paper elevation={1} style={{maxWidth: '700px', minWidth: '300px', padding: '1rem', width: 'calc(200px + 30vw)'}}>
+      <Paper
+        elevation={1}
+        style={{
+          maxWidth: '700px',
+          minWidth: '300px',
+          padding: '1rem',
+          width: 'calc(200px + 30vw)',
+        }}
+      >
         <TextField
           label="Texto em markdown"
           multiline={true}
@@ -32,9 +40,9 @@ export const EditorRoute: React.SFC<IEditorProps> = props => {
         />
       </Paper>
     </Container>
-  )
-}
+  );
+};
 
-EditorRoute.displayName = 'Editor'
+EditorRoute.displayName = 'Editor';
 
 export default EditorRoute;

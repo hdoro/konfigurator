@@ -1,4 +1,8 @@
-import { EConfigSpaces, IHeadingTypography, IUserTheme } from "../RootContainer";
+import {
+  EConfigSpaces,
+  IHeadingTypography,
+  IUserTheme,
+} from '../RootContainer';
 
 export type NoParamsAny = () => any;
 
@@ -6,7 +10,9 @@ export type TInputChange = (e: React.ChangeEvent<HTMLInputElement>) => any;
 
 export type TInputHandler = (propName: string) => TInputChange;
 
-export type TChangeConfigSpace = (configSpace?: EConfigSpaces) => (e: React.MouseEvent<HTMLButtonElement>) => any
+export type TChangeConfigSpace = (
+  configSpace?: EConfigSpaces
+) => (e: React.MouseEvent<HTMLButtonElement>) => any;
 
 export type TChangeThemeProp = (propName: string, propValue: any) => any;
 

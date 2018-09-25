@@ -1,9 +1,9 @@
 import {
   defaultHeadingMgBottom,
   defaultHeadingMgTop,
-  getHeadingFontSize
-} from "../styles/userTheme";
-import { TGetHeadingProperty } from "./types";
+  getHeadingFontSize,
+} from '../styles/userTheme';
+import { TGetHeadingProperty } from './types';
 
 export const displayHeadingSize: TGetHeadingProperty = (h, i, theme) =>
   `${+(h.fontSize || getHeadingFontSize(h, i, theme).toFixed(2))}px`;
