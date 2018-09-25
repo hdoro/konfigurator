@@ -21,3 +21,12 @@ export type TGetHeadingProperty = (
   i: number,
   theme: IUserTheme
 ) => any;
+
+export type TReturnHeadingPropertyValue = (
+  h: IHeadingTypography,
+  options: {
+    i?: number;
+    theme?: IUserTheme;
+    propertyName?: string;
+  }
+) => number;

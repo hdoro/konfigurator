@@ -16,6 +16,17 @@ import {
   getHeadingFontSize,
 } from '../../../styles/userTheme';
 import { TChangeThemeProp } from '../../../utils/types';
+import {
+  displayHeadingSize,
+  returnHeadingSize,
+  displayHeadingLineHeight,
+  returnHeadingLineHeight,
+  displayHeadingMarginTop,
+  displayHeadingMarginBottom,
+  returnHeadingMarginTop,
+  returnHeadingMarginBottom,
+} from '../../../utils/styleCalculations';
+import { headingProperties } from './headingProperties';
 
 export interface IHeadingsEditorProps {
   theme: IUserTheme;
@@ -88,124 +99,42 @@ export class HeadingsEditor extends React.Component<
         <Typography variant="body2" style={{ margin: '1.5rem 0 .5rem' }}>
           {props.title}
         </Typography>
-        {props.headings.map((heading, i) => {
-          const { fontSize, lineHeight, marginBottom, marginTop } = heading;
-          const headingDefaultFontSize = getHeadingFontSize(
-            heading,
-            i,
-            props.theme
-          );
-          return (
-            <ExpansionPanel
-              key={`heading-${i}`}
-              expanded={state.openedPanels[i]}
-              onChange={this.handlePanel(i)}
-            >
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>Cabeçalho {i + 1}</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails style={{ flexWrap: 'wrap' }}>
+        {props.headings.map((h, i) => (
+          <ExpansionPanel
+            key={`heading-${i}`}
+            expanded={state.openedPanels[i]}
+            onChange={this.handlePanel(i)}
+          >
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography>Cabeçalho {i + 1}</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails style={{ flexWrap: 'wrap' }}>
+              {headingProperties.map(p => (
                 <PropertyWrapper>
-                  <Typography id={`heading${i}__font-size`}>
-                    Tamanho da fonte:{' '}
-                    {fontSize ? fontSize : headingDefaultFontSize}
-                    px
+                  <Typography id={`heading${i}__${p.name}`}>
+                    {p.label}: {p.displayFunction(h, i, props.theme)}
                   </Typography>
                   <Slider
-                    aria-labelledby={`heading${i}__font-size`}
-                    onChange={this.handleSlider(i, 'fontSize')}
-                    max={80}
-                    step={1}
-                    value={fontSize || 0}
+                    aria-labelledby={`heading${i}__${p.name}`}
+                    onChange={this.handleSlider(i, p.name)}
+                    max={p.max}
+                    step={p.step}
+                    value={p.valueFunction(h, {
+                      theme: props.theme,
+                      i,
+                      propertyName: props.propertyName,
+                    })}
                   />
-                  <Typography variant="caption">
-                    Nota: caso igual a 0, o tamanho seguirá o ritmo geral
-                    definido, sendo multiplicado pelo tamanho da fonte.
-                  </Typography>
+                  {p.note ? (
+                    <Typography variant="caption">{p.note}</Typography>
+                  ) : null}
                 </PropertyWrapper>
-                <PropertyWrapper>
-                  <Typography id={`heading${i}__line-height`}>
-                    Altura da linha:{' '}
-                    {lineHeight
-                      ? Math.round(lineHeight * 100)
-                      : props.theme.body.lineHeight * 100}
-                    %
-                  </Typography>
-                  <Slider
-                    aria-labelledby={`heading${i}__line-height`}
-                    onChange={this.handleSlider(i, 'lineHeight')}
-                    max={4}
-                    step={0.05}
-                    value={lineHeight || 0}
-                  />
-                  <Typography variant="caption">
-                    Nota: caso igual a 0, o valor padrão será a altura da linha
-                    do parágrafo.
-                  </Typography>
-                </PropertyWrapper>
-                <PropertyWrapper>
-                  <Typography id={`heading${i}__mg-top`}>
-                    Margem no topo:{' '}
-                    {marginTop
-                      ? marginTop
-                      : (fontSize || headingDefaultFontSize) *
-                        defaultHeadingMgTop}
-                    px
-                  </Typography>
-                  <Slider
-                    aria-labelledby={`heading${i}__mg-top`}
-                    onChange={this.handleSlider(i, 'marginTop')}
-                    max={150}
-                    step={5}
-                    // In case the margin is not explicitly defined, we'll use
-                    // the font size and multiply it by the default margin top
-                    // (which is joined with a `em` unit)
-                    value={
-                      marginTop
-                        ? marginTop
-                        : (fontSize || headingDefaultFontSize) *
-                          defaultHeadingMgTop
-                    }
-                  />
-                  <Typography variant="caption">
-                    Nota: o valor padrão será 1.5x o tamanho da fonte.
-                  </Typography>
-                </PropertyWrapper>
-                <PropertyWrapper>
-                  <Typography id={`heading${i}__mg-bottom`}>
-                    Margem abaixo:{' '}
-                    {marginBottom
-                      ? marginBottom
-                      : (props.propertyName === 'headingsLg'
-                          ? props.theme.fontSizeLg
-                          : props.theme.fontSize) * defaultHeadingMgBottom}
-                    px
-                  </Typography>
-                  <Slider
-                    aria-labelledby={`heading${i}__mg-bottom`}
-                    onChange={this.handleSlider(i, 'marginBottom')}
-                    max={150}
-                    step={5}
-                    // The default margin bottom is based on a `rem` unit
-                    // therefore, we multiply it by the theme's fontSize
-                    value={
-                      marginBottom
-                        ? marginBottom
-                        : (props.propertyName === 'headingsLg'
-                            ? props.theme.fontSizeLg
-                            : props.theme.fontSize) * defaultHeadingMgBottom
-                    }
-                  />
-                  <Typography variant="caption">
-                    Nota: o valor padrão será 1.5x o tamanho da fonte.
-                  </Typography>
-                </PropertyWrapper>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-          );
-        })}
+              ))}
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+        ))}
         <div style={{ textAlign: 'right', marginTop: '.5rem' }}>
-          {props.headings.length > 0 ? (
+          {props.headings.length > 4 ? (
             <Button color="secondary" onClick={this.changeHeadingsNumber(true)}>
               Deletar
             </Button>
