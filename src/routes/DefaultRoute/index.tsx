@@ -1,19 +1,19 @@
-import { RouteComponentProps, Router } from "@reach/router";
-import * as React from "react";
-import styled from "styled-components";
-import ConfigSpace from "../components/ConfigSpace";
-import { GeneralTypographyEditor } from "../components/GeneralTypographyEditor";
-import { HeadingsEditor } from "../components/HeadingsEditor";
-import Sidebar from "../components/Sidebar";
-import { EConfigSpaces, IUserTheme } from "../RootContainer";
+import { RouteComponentProps, Router } from '@reach/router';
+import * as React from 'react';
+import styled from 'styled-components';
+import { EConfigSpaces, IUserTheme } from '../../RootContainer';
 import {
   NoParamsAny,
   TChangeConfigSpace,
   TChangeThemeProp,
-  TInputHandler
-} from "../utils/types";
-import { ExportRoute } from "./ExportRoute";
-import { ResultRoute } from "./ResultRoute";
+  TInputHandler,
+} from '../../utils/types';
+import { ExportRoute } from '../ExportRoute';
+import { ResultRoute } from '../ResultRoute';
+import ConfigSpace from './components/ConfigSpace';
+import { GeneralTypographyEditor } from './components/GeneralTypographyEditor';
+import { HeadingsEditor } from './components/HeadingsEditor';
+import Sidebar from './components/Sidebar';
 
 export interface IDefaultViewProps extends RouteComponentProps {
   content: string;
@@ -37,7 +37,7 @@ export const DefaultRoute: React.SFC<IDefaultViewProps> = props => {
   const { userTheme: theme } = props;
   return (
     <Container>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: 'flex' }}>
         <Sidebar
           activeSpace={props.activeSpace}
           changeSpace={props.changeSpace}
@@ -88,6 +88,6 @@ export const DefaultRoute: React.SFC<IDefaultViewProps> = props => {
   );
 };
 
-DefaultRoute.displayName = "DefaultView";
+DefaultRoute.displayName = 'DefaultView';
 
 export default DefaultRoute;

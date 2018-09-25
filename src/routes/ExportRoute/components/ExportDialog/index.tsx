@@ -6,14 +6,14 @@ import {
   DialogContentText,
   DialogTitle,
   TextField,
-  Typography
-} from "@material-ui/core";
-import * as queryString from "querystring";
-import * as React from "react";
-import * as CopyToClipboard from "react-copy-to-clipboard";
-import { IUserTheme } from "../../RootContainer";
-import { NoParamsAny } from "../../utils/types";
-import { saveTheme } from "./saveTheme";
+  Typography,
+} from '@material-ui/core';
+import * as queryString from 'querystring';
+import * as React from 'react';
+import * as CopyToClipboard from 'react-copy-to-clipboard';
+import { IUserTheme } from '../../../../RootContainer';
+import { NoParamsAny } from '../../../../utils/types';
+import { saveTheme } from './saveTheme';
 
 export interface IExportDialogProps {
   isOpen: boolean;
@@ -22,10 +22,9 @@ export interface IExportDialogProps {
 }
 
 export const ExportDialog: React.SFC<IExportDialogProps> = props => {
-  const urlToShare = `${window.location.origin}/?${queryString.stringify(
-    {theme: JSON.stringify(props.theme)}
-  )}`;
-  console.log(window.location);
+  const urlToShare = `${window.location.origin}/?${queryString.stringify({
+    theme: JSON.stringify(props.theme),
+  })}`;
   return (
     <Dialog
       open={props.isOpen}
@@ -42,14 +41,14 @@ export const ExportDialog: React.SFC<IExportDialogProps> = props => {
             ou copiar o link abaixo para compartilhar estas configurações ;)
           </Typography>
         </DialogContentText>
-        <div style={{ display: "flex", margin: '2rem 0' }}>
+        <div style={{ display: 'flex', margin: '2rem 0' }}>
           <TextField
             defaultValue={urlToShare}
             label="Link para compartilhamento"
             inputProps={{
-              readOnly: true
+              readOnly: true,
             }}
-            style={{flex: 1}}
+            style={{ flex: 1 }}
           />
           <CopyToClipboard text={urlToShare}>
             <Button>Copiar Link</Button>
@@ -65,6 +64,6 @@ export const ExportDialog: React.SFC<IExportDialogProps> = props => {
   );
 };
 
-ExportDialog.displayName = "ExportDialog";
+ExportDialog.displayName = 'ExportDialog';
 
 export default ExportDialog;

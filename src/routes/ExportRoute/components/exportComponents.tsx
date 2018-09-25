@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CategoryWrapper = styled.section`
   padding: 0.5rem 0;
@@ -23,8 +23,8 @@ export const ColorDisplay = styled.span`
   background: ${(props: { color: string }) => props.color};
   border-radius: 50%;
   font-size: 1.5rem;
-  padding: .35em .5em;
-  margin: 0 .5rem 0 1rem;
+  padding: 0.35em 0.5em;
+  margin: 0 0.5rem 0 1rem;
   vertical-align: middle;
   height: 1em;
   width: 1em;
@@ -32,7 +32,7 @@ export const ColorDisplay = styled.span`
 
 export const ExportedListItem: React.SFC<{ name: string }> = ({
   name,
-  children
+  children,
 }) => (
   <li>
     <strong>{name}</strong>: {children}

@@ -1,23 +1,23 @@
-import * as React from "react";
-import { IUserTheme } from "../../RootContainer";
+import * as React from 'react';
+import { IUserTheme } from '../../../RootContainer';
 import {
   defaultHeadingMgBottom,
   defaultHeadingMgTop,
-  getHeadingFontSize
-} from "../../styles/userTheme";
+  getHeadingFontSize,
+} from '../../../styles/userTheme';
 import {
   displayHeadingLineHeight,
   displayHeadingMarginBottom,
   displayHeadingMarginTop,
-  displayHeadingSize
-} from "../../utils/styleCalculations";
-import { TGetHeadingProperty } from "../../utils/types";
+  displayHeadingSize,
+} from '../../../utils/styleCalculations';
+import { TGetHeadingProperty } from '../../../utils/types';
 import {
   CategoryWrapper,
   ExportedList,
   ExportedListItem,
-  PropertyWrapper
-} from "./exportComponents";
+  PropertyWrapper,
+} from './exportComponents';
 
 export interface IExportedHeadingsProps {
   theme: IUserTheme;
@@ -29,10 +29,10 @@ interface IHeadingProperties {
 }
 
 const headingProperties: IHeadingProperties[] = [
-  { name: "font-size", returnFunction: displayHeadingSize },
-  { name: "line-height", returnFunction: displayHeadingLineHeight },
-  { name: "margin-top", returnFunction: displayHeadingMarginTop },
-  { name: "margin-bottom", returnFunction: displayHeadingMarginBottom }
+  { name: 'font-size', returnFunction: displayHeadingSize },
+  { name: 'line-height', returnFunction: displayHeadingLineHeight },
+  { name: 'margin-top', returnFunction: displayHeadingMarginTop },
+  { name: 'margin-bottom', returnFunction: displayHeadingMarginBottom },
 ];
 
 export const ExportedHeadings: React.SFC<IExportedHeadingsProps> = props => {

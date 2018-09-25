@@ -6,11 +6,11 @@ import {
   Theme,
   Typography,
   withStyles,
-  WithStyles
-} from "@material-ui/core";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import * as React from "react";
-import { TChangeConfigSpace } from "../utils/types";
+  WithStyles,
+} from '@material-ui/core';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import * as React from 'react';
+import { TChangeConfigSpace } from '../../../utils/types';
 
 export interface IConfigSpaceProps extends WithStyles<typeof styles> {
   title: string;
@@ -23,18 +23,18 @@ const styles = (theme: Theme) =>
     drawerPaper: {
       width: 320,
       zIndex: theme.zIndex.drawer - 1,
-      [theme.breakpoints.up("md")]: {
-        position: "relative"
-      }
+      [theme.breakpoints.up('md')]: {
+        position: 'relative',
+      },
     },
     drawerBackdrop: {
       background: 'rgba(0,0,0,.3)',
     },
     header: {
       ...theme.mixins.toolbar,
-      display: "flex",
-      alignItems: "center"
-    }
+      display: 'flex',
+      alignItems: 'center',
+    },
   });
 
 export const ConfigSpace: React.SFC<IConfigSpaceProps> = props => {
@@ -45,7 +45,7 @@ export const ConfigSpace: React.SFC<IConfigSpaceProps> = props => {
         paper: classes.drawerPaper,
       }}
       BackdropProps={{
-        className: classes.drawerBackdrop
+        className: classes.drawerBackdrop,
       }}
       open={props.isOpen}
       anchor="left"
@@ -55,16 +55,16 @@ export const ConfigSpace: React.SFC<IConfigSpaceProps> = props => {
         <IconButton onClick={props.changeSpace()}>
           <ChevronLeftIcon />
         </IconButton>
-        <Typography style={{ marginLeft: ".5rem" }} variant="subheading">
+        <Typography style={{ marginLeft: '.5rem' }} variant="subheading">
           {props.title}
         </Typography>
       </div>
       <Divider />
-      <div style={{ padding: "1rem" }}>{props.children}</div>
+      <div style={{ padding: '1rem' }}>{props.children}</div>
     </Drawer>
   );
 };
 
-ConfigSpace.displayName = "ConfigSpace";
+ConfigSpace.displayName = 'ConfigSpace';
 
 export default withStyles(styles, { withTheme: true })(ConfigSpace);

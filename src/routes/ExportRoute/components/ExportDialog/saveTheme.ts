@@ -1,6 +1,6 @@
-import { saveAs } from "file-saver";
+import { saveAs } from 'file-saver';
 import { js_beautify } from 'js-beautify';
-import { IUserTheme } from "../../RootContainer";
+import { IUserTheme } from '../../../../RootContainer';
 
 const generateThemeText = (theme: IUserTheme) => {
   const exportedTheme = `
@@ -17,7 +17,7 @@ export const saveTheme = (theme: IUserTheme) => (
   e: React.MouseEvent<HTMLButtonElement>
 ) => {
   const blob = new Blob([generateThemeText(theme)], {
-    type: "text/plain;charset=utf-8"
+    type: 'text/plain;charset=utf-8',
   });
-  saveAs(blob, "theme.ts");
+  saveAs(blob, 'theme.ts');
 };

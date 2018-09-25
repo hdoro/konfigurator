@@ -3,19 +3,19 @@ import {
   ExpansionPanel,
   ExpansionPanelDetails,
   ExpansionPanelSummary,
-  Typography
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Slider } from "@material-ui/lab";
-import * as React from "react";
-import styled from "styled-components";
-import { IHeadingTypography, IUserTheme } from "../RootContainer";
+  Typography,
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Slider } from '@material-ui/lab';
+import * as React from 'react';
+import styled from 'styled-components';
+import { IHeadingTypography, IUserTheme } from '../../../RootContainer';
 import {
   defaultHeadingMgBottom,
   defaultHeadingMgTop,
-  getHeadingFontSize
-} from "../styles/userTheme";
-import { TChangeThemeProp } from "../utils/types";
+  getHeadingFontSize,
+} from '../../../styles/userTheme';
+import { TChangeThemeProp } from '../../../utils/types';
 
 export interface IHeadingsEditorProps {
   theme: IUserTheme;
@@ -39,7 +39,7 @@ export class HeadingsEditor extends React.Component<
   IHeadingsEditorState
 > {
   public state = {
-    openedPanels: this.props.headings.map(() => false)
+    openedPanels: this.props.headings.map(() => false),
   };
 
   public handleSlider = (index: number, headingPropName: string) => (
@@ -51,9 +51,9 @@ export class HeadingsEditor extends React.Component<
       ...headings.slice(0, index),
       {
         ...headings[index],
-        [headingPropName]: value
+        [headingPropName]: value,
       },
-      ...headings.slice(index + 1)
+      ...headings.slice(index + 1),
     ];
     changeThemeProperty(propertyName, newHeadings);
   };
@@ -63,8 +63,8 @@ export class HeadingsEditor extends React.Component<
       openedPanels: [
         ...prevState.openedPanels.slice(0, index),
         !prevState.openedPanels[index],
-        ...prevState.openedPanels.slice(index + 1)
-      ]
+        ...prevState.openedPanels.slice(index + 1),
+      ],
     }));
   };
 
@@ -85,7 +85,7 @@ export class HeadingsEditor extends React.Component<
     const { props, state } = this;
     return (
       <>
-        <Typography variant="body2" style={{ margin: "1.5rem 0 .5rem" }}>
+        <Typography variant="body2" style={{ margin: '1.5rem 0 .5rem' }}>
           {props.title}
         </Typography>
         {props.headings.map((heading, i) => {
@@ -104,16 +104,16 @@ export class HeadingsEditor extends React.Component<
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>Cabeçalho {i + 1}</Typography>
               </ExpansionPanelSummary>
-              <ExpansionPanelDetails style={{ flexWrap: "wrap" }}>
+              <ExpansionPanelDetails style={{ flexWrap: 'wrap' }}>
                 <PropertyWrapper>
                   <Typography id={`heading${i}__font-size`}>
-                    Tamanho da fonte:{" "}
+                    Tamanho da fonte:{' '}
                     {fontSize ? fontSize : headingDefaultFontSize}
                     px
                   </Typography>
                   <Slider
                     aria-labelledby={`heading${i}__font-size`}
-                    onChange={this.handleSlider(i, "fontSize")}
+                    onChange={this.handleSlider(i, 'fontSize')}
                     max={80}
                     step={1}
                     value={fontSize || 0}
@@ -125,7 +125,7 @@ export class HeadingsEditor extends React.Component<
                 </PropertyWrapper>
                 <PropertyWrapper>
                   <Typography id={`heading${i}__line-height`}>
-                    Altura da linha:{" "}
+                    Altura da linha:{' '}
                     {lineHeight
                       ? Math.round(lineHeight * 100)
                       : props.theme.body.lineHeight * 100}
@@ -133,7 +133,7 @@ export class HeadingsEditor extends React.Component<
                   </Typography>
                   <Slider
                     aria-labelledby={`heading${i}__line-height`}
-                    onChange={this.handleSlider(i, "lineHeight")}
+                    onChange={this.handleSlider(i, 'lineHeight')}
                     max={4}
                     step={0.05}
                     value={lineHeight || 0}
@@ -145,7 +145,7 @@ export class HeadingsEditor extends React.Component<
                 </PropertyWrapper>
                 <PropertyWrapper>
                   <Typography id={`heading${i}__mg-top`}>
-                    Margem no topo:{" "}
+                    Margem no topo:{' '}
                     {marginTop
                       ? marginTop
                       : (fontSize || headingDefaultFontSize) *
@@ -154,7 +154,7 @@ export class HeadingsEditor extends React.Component<
                   </Typography>
                   <Slider
                     aria-labelledby={`heading${i}__mg-top`}
-                    onChange={this.handleSlider(i, "marginTop")}
+                    onChange={this.handleSlider(i, 'marginTop')}
                     max={150}
                     step={5}
                     // In case the margin is not explicitly defined, we'll use
@@ -173,17 +173,17 @@ export class HeadingsEditor extends React.Component<
                 </PropertyWrapper>
                 <PropertyWrapper>
                   <Typography id={`heading${i}__mg-bottom`}>
-                    Margem abaixo:{" "}
+                    Margem abaixo:{' '}
                     {marginBottom
                       ? marginBottom
-                      : (props.propertyName === "headingsLg"
+                      : (props.propertyName === 'headingsLg'
                           ? props.theme.fontSizeLg
                           : props.theme.fontSize) * defaultHeadingMgBottom}
                     px
                   </Typography>
                   <Slider
                     aria-labelledby={`heading${i}__mg-bottom`}
-                    onChange={this.handleSlider(i, "marginBottom")}
+                    onChange={this.handleSlider(i, 'marginBottom')}
                     max={150}
                     step={5}
                     // The default margin bottom is based on a `rem` unit
@@ -191,7 +191,7 @@ export class HeadingsEditor extends React.Component<
                     value={
                       marginBottom
                         ? marginBottom
-                        : (props.propertyName === "headingsLg"
+                        : (props.propertyName === 'headingsLg'
                             ? props.theme.fontSizeLg
                             : props.theme.fontSize) * defaultHeadingMgBottom
                     }
@@ -204,7 +204,7 @@ export class HeadingsEditor extends React.Component<
             </ExpansionPanel>
           );
         })}
-        <div style={{ textAlign: "right", marginTop: ".5rem" }}>
+        <div style={{ textAlign: 'right', marginTop: '.5rem' }}>
           {props.headings.length > 0 ? (
             <Button color="secondary" onClick={this.changeHeadingsNumber(true)}>
               Deletar

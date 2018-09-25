@@ -1,15 +1,13 @@
-import { Button } from "@material-ui/core";
-import SaveIcon from "@material-ui/icons/SaveRounded";
-import { RouteComponentProps } from "@reach/router";
-import * as React from "react";
-import Frame, { FrameContextConsumer } from "react-frame-component";
-import styled, { StyleSheetManager } from "styled-components";
-import { ExportDialog } from "../../components/ExportDialog";
-import { IUserTheme } from "../../RootContainer";
-import { GlobalUserStyles } from "../../styles/userTheme";
-import { DisplayContainer } from "../ResultRoute";
-import { ExportedBasic } from "./ExportedBasic";
-import { ExportedHeadings } from "./ExportedHeadings";
+import { Button } from '@material-ui/core';
+import SaveIcon from '@material-ui/icons/SaveRounded';
+import { RouteComponentProps } from '@reach/router';
+import * as React from 'react';
+import Frame, { FrameContextConsumer } from 'react-frame-component';
+import styled, { StyleSheetManager } from 'styled-components';
+import { IUserTheme } from '../../RootContainer';
+import { DisplayContainer } from '../ResultRoute';
+import { ExportDialog } from './components/ExportDialog';
+import { ExportedContent } from './components/ExportedContent';
 
 export interface IExportRouteProps extends RouteComponentProps {
   userTheme: IUserTheme;
@@ -38,13 +36,13 @@ export class ExportRoute extends React.Component<
   IExportRouteState
 > {
   public state = {
-    isExportDialogOpen: false
+    isExportDialogOpen: false,
   };
 
   public toggleDialog = () => {
     this.setState(prevState => ({
       ...prevState,
-      isExportDialogOpen: !prevState.isExportDialogOpen
+      isExportDialogOpen: !prevState.isExportDialogOpen,
     }));
   };
 
@@ -62,12 +60,7 @@ export class ExportRoute extends React.Component<
             <FrameContextConsumer>
               {(frameContext: any) => (
                 <StyleSheetManager target={frameContext.document.head}>
-                  <>
-                    <h1>Configurações exportadas</h1>
-                    <GlobalUserStyles theme={theme} />
-                    <ExportedBasic theme={theme} />
-                    <ExportedHeadings theme={theme} />
-                  </>
+                  <ExportedContent theme={theme} />
                 </StyleSheetManager>
               )}
             </FrameContextConsumer>
@@ -76,7 +69,7 @@ export class ExportRoute extends React.Component<
         <Button
           variant="fab"
           onClick={this.toggleDialog}
-          style={{ position: "fixed", bottom: "2rem", right: "2rem" }}
+          style={{ position: 'fixed', bottom: '2rem', right: '2rem' }}
           color="secondary"
         >
           <SaveIcon />

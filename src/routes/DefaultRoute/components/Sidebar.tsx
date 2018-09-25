@@ -5,17 +5,20 @@ import {
   Theme,
   Tooltip,
   withStyles,
-  WithStyles
-} from "@material-ui/core";
-import ColorsIcon from "@material-ui/icons/ColorLensRounded";
-import FormatIcon from "@material-ui/icons/FormatColorTextRounded";
-import RestoreIcon from "@material-ui/icons/RestoreFromTrashRounded";
-import SpellcheckIcon from "@material-ui/icons/SpellcheckRounded";
-import TitleIcon from "@material-ui/icons/TitleRounded";
-import { Link } from "@reach/router";
-import * as React from "react";
-import { EConfigSpaces, IUserTheme } from "../RootContainer";
-import { NoParamsAny, TChangeConfigSpace, TInputHandler } from "../utils/types";
+  WithStyles,
+} from '@material-ui/core';
+import FormatIcon from '@material-ui/icons/FormatColorTextRounded';
+import RestoreIcon from '@material-ui/icons/RestoreFromTrashRounded';
+import SpellcheckIcon from '@material-ui/icons/SpellcheckRounded';
+import TitleIcon from '@material-ui/icons/TitleRounded';
+import { Link } from '@reach/router';
+import * as React from 'react';
+import { EConfigSpaces, IUserTheme } from '../../../RootContainer';
+import {
+  NoParamsAny,
+  TChangeConfigSpace,
+  TInputHandler,
+} from '../../../utils/types';
 
 export interface ISidebarProps extends WithStyles<typeof styles> {
   userTheme: IUserTheme;
@@ -31,27 +34,27 @@ const styles = (theme: Theme) =>
   createStyles({
     drawerPaper: {
       width: fixedSidebarWidth,
-      padding: "10px",
-      textAlign: "center",
-      display: "flex",
-      flexDirection: "column",
-      [theme.breakpoints.up("md")]: {
-        position: "relative"
-      }
+      padding: '10px',
+      textAlign: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      [theme.breakpoints.up('md')]: {
+        position: 'relative',
+      },
     },
     spacer: theme.mixins.toolbar,
     activeIcon: {
       color: theme.palette.primary.main,
       transition: `.${theme.transitions.duration.standard}s ${
         theme.transitions.easing.easeIn
-      }`
+      }`,
     },
     inactiveIcon: {
-      color: theme.palette.grey["400"],
+      color: theme.palette.grey['400'],
       transition: `.${theme.transitions.duration.standard}s ${
         theme.transitions.easing.easeIn
-      }`
-    }
+      }`,
+    },
   });
 
 export const Sidebar: React.SFC<ISidebarProps> = props => {
@@ -60,20 +63,16 @@ export const Sidebar: React.SFC<ISidebarProps> = props => {
     {
       space: EConfigSpaces.typography,
       icon: (isActive: boolean) => (
-        <FormatIcon
-          className={isActive ? classes.activeIcon : ''}
-        />
+        <FormatIcon className={isActive ? classes.activeIcon : ''} />
       ),
-      title: "Tipografia básica"
+      title: 'Tipografia básica',
     },
     {
       space: EConfigSpaces.headings,
       icon: (isActive: boolean) => (
-        <TitleIcon
-          className={isActive ? classes.activeIcon : ''}
-        />
+        <TitleIcon className={isActive ? classes.activeIcon : ''} />
       ),
-      title: "Cabeçalhos"
+      title: 'Cabeçalhos',
     },
   ];
   return (
@@ -108,6 +107,6 @@ export const Sidebar: React.SFC<ISidebarProps> = props => {
   );
 };
 
-Sidebar.displayName = "Sidebar";
+Sidebar.displayName = 'Sidebar';
 
 export default withStyles(styles, { withTheme: true })(Sidebar);
