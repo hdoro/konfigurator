@@ -18,7 +18,6 @@ export const defaultUserTheme: IUserTheme = {
   // Size
   fontSize: 16,
   fontSizeLg: 20,
-  rythmRatio: 1.25,
   // Family
   fontFamilyBody: 'Roboto',
   familyCategoryBody: 'sans-serif',

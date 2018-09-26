@@ -36,7 +36,6 @@ export interface IUserTheme {
   // Size
   fontSize: number;
   fontSizeLg: number;
-  rythmRatio: number;
   // Family
   fontFamilyBody: string;
   fontFamilyHeading?: string;

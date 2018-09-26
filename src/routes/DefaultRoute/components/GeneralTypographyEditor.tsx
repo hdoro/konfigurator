@@ -78,24 +78,6 @@ export class GeneralTypographyEditor extends React.Component<
             Pode ser o mesmo das telas menores, mas cuidado com acessibilidade!
           </Typography>
         </PropertyWrapper>
-        <PropertyWrapper>
-          <Typography id={`typography__rythm`}>
-            Ritmo da escala modular: {+theme.rythmRatio.toFixed(2)}x
-          </Typography>
-          <Slider
-            aria-labelledby={`typography__rythm`}
-            onChange={this.handleSlider('rythmRatio')}
-            min={1}
-            max={2.5}
-            step={0.01}
-            value={theme.rythmRatio}
-          />
-          <Typography variant="caption">
-            Nota: esta propriedade serve para definir uma escala padrão para
-            todos os tamanhos de fonte, mas você pode passar por cima dela
-            definindo o tamanho de cada cabeçalho manualmente ;)
-          </Typography>
-        </PropertyWrapper>
         <Typography variant="body2" style={{ margin: '1.5rem 0 .5rem' }}>
           Família da fonte
         </Typography>

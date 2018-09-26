@@ -2,7 +2,6 @@ import {
   TDisplayHeadingPropertyValue,
   TDisplayBodyPropertyValue,
 } from './types';
-import { getHeadingFontSize } from '../styles/generatedUserStyles/getHeadingStyles';
 import {
   defaultHeadingMgTop,
   defaultHeadingMgBottom,
@@ -43,10 +42,9 @@ export const displayHeadingMarginTop: TDisplayHeadingPropertyValue = (
   // If we have a marginTop property, we'll use it as `${marginTop}px`
   // Else, check if there's a font-size, if not, get the rythm-based font-size, and multiply either by the defaultHeadingMgTop 'em' value
   // Then, round it to 2 decimal places
-  `${+(h.marginTop
-    ? h.marginTop
-    : (h.fontSize || getHeadingFontSize({ h, i, theme })) * defaultHeadingMgTop
-  ).toFixed(2)}px`;
+  `${+(h.marginTop ? h.marginTop : h.fontSize * defaultHeadingMgTop).toFixed(
+    2
+  )}px`;
 
 export const displayHeadingMarginBottom: TDisplayHeadingPropertyValue = (
   h,

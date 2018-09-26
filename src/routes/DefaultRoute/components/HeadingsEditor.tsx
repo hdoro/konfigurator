@@ -4,6 +4,7 @@ import {
   ExpansionPanelDetails,
   ExpansionPanelSummary,
   Typography,
+  Divider,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Slider } from '@material-ui/lab';
@@ -18,7 +19,6 @@ import {
   displayHeadingMarginBottom,
 } from '../../../utils/styleCalculations';
 import { headingProperties } from './themeProperties';
-import { getHeadingFontSize } from '../../../styles/generatedUserStyles/getHeadingStyles';
 
 export interface IHeadingsEditorProps {
   theme: IUserTheme;
@@ -30,6 +30,7 @@ export interface IHeadingsEditorProps {
 
 export interface IHeadingsEditorState {
   openedPanels: boolean[];
+  currentRythm: number;
 }
 
 const PropertyWrapper = styled.div`
@@ -43,6 +44,37 @@ export class HeadingsEditor extends React.Component<
 > {
   public state = {
     openedPanels: this.props.headings.map(() => false),
+    currentRythm: 1.25,
+  };
+
+  // Sets all font-sizes to their equivalent rythm-based size
+  public handleRythmOverride = () => {
+    const { headings, changeThemeProperty, propertyName, theme } = this.props;
+    const newHeadings: IHeadingTypography[] = headings.map((h, i) => {
+      const fontSize =
+        Math.pow(this.state.currentRythm, headings.length - i) *
+        (propertyName === 'headingsLg' ? theme.fontSizeLg : theme.fontSize);
+      console.log(
+        i,
+        fontSize,
+        theme.fontSize,
+        Math.pow(this.state.currentRythm, headings.length - i)
+      );
+      return {
+        ...h,
+        fontSize,
+      };
+    });
+    changeThemeProperty(propertyName, newHeadings);
+  };
+
+  public handleRythmChange: (
+    event: React.ChangeEvent<{}>,
+    value: number
+  ) => void = (e, value) => {
+    this.setState({
+      currentRythm: +value.toFixed(2),
+    });
   };
 
   public handleSlider = (index: number, headingPropName: string) => (
@@ -54,7 +86,7 @@ export class HeadingsEditor extends React.Component<
       ...headings.slice(0, index),
       {
         ...headings[index],
-        [headingPropName]: value,
+        [headingPropName]: +value.toFixed(2),
       },
       ...headings.slice(index + 1),
     ];
@@ -81,14 +113,8 @@ export class HeadingsEditor extends React.Component<
     } else {
       newHeadings = [
         ...newHeadings,
-        // When creating a new heading, we want to automatically generate the font-size based on the theme rythm with the getHeadingFontSize
         {
-          fontSize: getHeadingFontSize({
-            h: { fontSize: 0 },
-            i: headings.length,
-            theme,
-            isLarge: propertyName === 'headingsLg',
-          }),
+          fontSize: theme.fontSize,
         },
       ];
     }
@@ -102,6 +128,27 @@ export class HeadingsEditor extends React.Component<
         <Typography variant="body2" style={{ margin: '1.5rem 0 .5rem' }}>
           {props.title}
         </Typography>
+        <PropertyWrapper>
+          <Typography id="headings-rythm">
+            Opcional: ritmo da escala modular: {state.currentRythm}x
+          </Typography>
+          <Slider
+            aria-labelledby="headings-rythm"
+            onChange={this.handleRythmChange}
+            max={1.5}
+            min={1}
+            step={0.05}
+            value={state.currentRythm}
+          />
+          <Button color="secondary" onClick={this.handleRythmOverride}>
+            Definir tamanhos segundo ritmo
+          </Button>
+          <Typography variant="caption" style={{ marginTop: '.5rem' }}>
+            <strong>Atenção:</strong> essa ação é irreversível e irá modificar
+            por completo o tamanho dos cabeçalhos de {props.title.toLowerCase()}
+            !
+          </Typography>
+        </PropertyWrapper>
         {props.headings.map((h, i) => (
           <ExpansionPanel
             key={`heading-${i}`}
@@ -133,7 +180,7 @@ export class HeadingsEditor extends React.Component<
             </ExpansionPanelDetails>
           </ExpansionPanel>
         ))}
-        <div style={{ textAlign: 'right', marginTop: '.5rem' }}>
+        <div style={{ textAlign: 'right', margin: '.5rem' }}>
           {props.headings.length > 4 ? (
             <Button color="secondary" onClick={this.changeHeadingsNumber(true)}>
               Deletar
@@ -145,6 +192,7 @@ export class HeadingsEditor extends React.Component<
             </Button>
           ) : null}
         </div>
+        <Divider />
       </>
     );
   }

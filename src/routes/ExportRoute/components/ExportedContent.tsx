@@ -21,9 +21,6 @@ export const ExportedContent: React.SFC<IExportedBasicProps> = props => {
   return (
     <>
       <h2>Base do tema</h2>
-      <p>
-        <strong>Razão do ritmo modular</strong>: {theme.rythmRatio}x
-      </p>
       <ExportedBody theme={theme} />
       <ExportedFamily theme={theme} />
       <ExportedColors theme={theme} />
