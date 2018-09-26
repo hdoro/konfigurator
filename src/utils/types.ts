@@ -16,11 +16,11 @@ export type TChangeConfigSpace = (
 
 export type TChangeThemeProp = (propName: string, propValue: any) => any;
 
-export type TGetHeadingProperty = (
+export type TDisplayHeadingPropertyValue = (
   h: IHeadingTypography,
   i: number,
   theme: IUserTheme
-) => any;
+) => string;
 
 export type TReturnHeadingPropertyValue = (
   h: IHeadingTypography,
@@ -30,3 +30,7 @@ export type TReturnHeadingPropertyValue = (
     propertyName?: string;
   }
 ) => number;
+
+export type TDisplayBodyPropertyValue = (theme: IUserTheme) => string;
+
+export type TReturnBodyPropertyValue = (theme: IUserTheme) => number;

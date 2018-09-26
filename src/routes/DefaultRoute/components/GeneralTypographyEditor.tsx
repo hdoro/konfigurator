@@ -2,7 +2,6 @@ import { Typography } from '@material-ui/core';
 import { Slider } from '@material-ui/lab';
 import FontPicker from 'font-picker-react';
 import * as React from 'react';
-import { ColorResult, TwitterPicker } from 'react-color';
 import styled from 'styled-components';
 import { IUserTheme } from '../../../RootContainer';
 import {
@@ -28,10 +27,6 @@ export class GeneralTypographyEditor extends React.Component<
 > {
   public handleSlider = (propName: string) => (e: any, value: number) => {
     this.props.changeThemeProperty(propName, value);
-  };
-
-  public handleColor = (colorName: string) => (e: ColorResult) => {
-    this.props.changeThemeProperty(`colors.${colorName}`, e.hex);
   };
 
   public handleFonts = (isHeading: boolean = false) => (e: any) => {
@@ -141,98 +136,6 @@ export class GeneralTypographyEditor extends React.Component<
           <Typography variant="caption" style={{ marginTop: '.5rem' }}>
             Você pode deixar esse valor em branco se quiser só 1 família pra
             todo o texto ;)
-          </Typography>
-        </PropertyWrapper>
-        <Typography variant="body2" style={{ margin: '1.5rem 0 .5rem' }}>
-          Corpo de texto'
-        </Typography>
-        <PropertyWrapper>
-          <Typography id={`typography__body-line-height`}>
-            Altura da linha: {Math.round(theme.body.lineHeight * 100)}%
-          </Typography>
-          <Slider
-            aria-labelledby={`typography__body-line-height`}
-            onChange={this.handleSlider('body.lineHeight')}
-            max={4}
-            step={0.05}
-            value={theme.body.lineHeight}
-          />
-        </PropertyWrapper>
-        <PropertyWrapper>
-          <Typography id={`typography__body-line-height_lg`}>
-            Altura da linha em <strong>telas grandes</strong>:{' '}
-            {Math.round(
-              (theme.body.lineHeightLg || theme.body.lineHeight) * 100
-            )}
-            %
-          </Typography>
-          <Slider
-            aria-labelledby={`typography__body-line-height_lg`}
-            onChange={this.handleSlider('body.lineHeightLg')}
-            max={4}
-            step={0.05}
-            value={theme.body.lineHeightLg || 0}
-          />
-          <Typography variant="caption">
-            Para usar o valor de telas menores, arraste para 0 ;)
-          </Typography>
-        </PropertyWrapper>
-        <PropertyWrapper>
-          <Typography id={`typography__body-max-width`}>
-            Largura máxima do parágrafo: {theme.body.maxWidth}
-            px
-          </Typography>
-          <Slider
-            aria-labelledby={`typography__body-max-width`}
-            onChange={this.handleSlider('body.maxWidth')}
-            max={1000}
-            min={300}
-            step={10}
-            value={theme.body.maxWidth}
-          />
-        </PropertyWrapper>
-        <PropertyWrapper>
-          <Typography id={`typography__body-margin`}>
-            Margem vertical entre parágrafos:{' '}
-            {theme.body.margin * theme.fontSize}
-            px
-          </Typography>
-          <Slider
-            aria-labelledby={`typography__body-margin`}
-            onChange={this.handleSlider('body.margin')}
-            max={5}
-            step={0.25}
-            value={theme.body.margin}
-          />
-          <Typography variant="caption">
-            O valor acima é calculado segundo o tamanho de fonte base de telas
-            menores. Como referência, a{' '}
-            <strong>
-              margem em telas grandes é {theme.body.margin * theme.fontSizeLg}
-              px
-            </strong>
-          </Typography>
-        </PropertyWrapper>
-        <Typography variant="body2" style={{ margin: '1.5rem 0 .5rem' }}>
-          Cores
-        </Typography>
-        <PropertyWrapper>
-          <Typography>Cor de texto</Typography>
-          <TwitterPicker
-            color={theme.colors.text}
-            onChange={this.handleColor('text')}
-            colors={['#777', '#666', '#555', '#444', '#333', '#222', '#111']}
-          />
-        </PropertyWrapper>
-        <PropertyWrapper>
-          <Typography>Cor de cabeçalhos</Typography>
-          <TwitterPicker
-            color={theme.colors.heading || theme.colors.text}
-            onChange={this.handleColor('heading')}
-            colors={['#777', '#666', '#555', '#444', '#333', '#222', '#111']}
-          />
-          <Typography variant="caption">
-            Pode ser a mesma cor do texto ;)
           </Typography>
         </PropertyWrapper>
       </>

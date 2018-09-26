@@ -9,6 +9,7 @@ import { defaultUserTheme } from './styles/defaultUserTheme';
 export enum EConfigSpaces {
   typography,
   headings,
+  body,
   colors,
 }
 

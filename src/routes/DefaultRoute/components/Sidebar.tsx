@@ -8,9 +8,11 @@ import {
   WithStyles,
 } from '@material-ui/core';
 import FormatIcon from '@material-ui/icons/FormatColorTextRounded';
+import ParagraphIcon from '@material-ui/icons/ShortTextRounded';
 import RestoreIcon from '@material-ui/icons/RestoreFromTrashRounded';
 import SpellcheckIcon from '@material-ui/icons/SpellcheckRounded';
 import TitleIcon from '@material-ui/icons/TitleRounded';
+import ColorsIcon from '@material-ui/icons/ColorLensRounded';
 import { Link } from '@reach/router';
 import * as React from 'react';
 import { EConfigSpaces, IUserTheme } from '../../../RootContainer';
@@ -68,11 +70,25 @@ export const Sidebar: React.SFC<ISidebarProps> = props => {
       title: 'Tipografia básica',
     },
     {
+      space: EConfigSpaces.body,
+      icon: (isActive: boolean) => (
+        <ParagraphIcon className={isActive ? classes.activeIcon : ''} />
+      ),
+      title: 'Corpo do texto',
+    },
+    {
       space: EConfigSpaces.headings,
       icon: (isActive: boolean) => (
         <TitleIcon className={isActive ? classes.activeIcon : ''} />
       ),
       title: 'Cabeçalhos',
+    },
+    {
+      space: EConfigSpaces.colors,
+      icon: (isActive: boolean) => (
+        <ColorsIcon className={isActive ? classes.activeIcon : ''} />
+      ),
+      title: 'Cores',
     },
   ];
   return (

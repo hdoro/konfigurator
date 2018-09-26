@@ -26,7 +26,7 @@ import {
   returnHeadingMarginTop,
   returnHeadingMarginBottom,
 } from '../../../utils/styleCalculations';
-import { headingProperties } from './headingProperties';
+import { headingProperties } from './themeProperties';
 
 export interface IHeadingsEditorProps {
   theme: IUserTheme;
@@ -110,7 +110,7 @@ export class HeadingsEditor extends React.Component<
             </ExpansionPanelSummary>
             <ExpansionPanelDetails style={{ flexWrap: 'wrap' }}>
               {headingProperties.map(p => (
-                <PropertyWrapper>
+                <PropertyWrapper key={p.name}>
                   <Typography id={`heading${i}__${p.name}`}>
                     {p.label}: {p.displayFunction(h, i, props.theme)}
                   </Typography>
@@ -118,6 +118,7 @@ export class HeadingsEditor extends React.Component<
                     aria-labelledby={`heading${i}__${p.name}`}
                     onChange={this.handleSlider(i, p.name)}
                     max={p.max}
+                    min={p.min}
                     step={p.step}
                     value={p.valueFunction(h, {
                       theme: props.theme,

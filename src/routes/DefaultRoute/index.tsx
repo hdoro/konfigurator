@@ -14,6 +14,8 @@ import ConfigSpace from './components/ConfigSpace';
 import { GeneralTypographyEditor } from './components/GeneralTypographyEditor';
 import { HeadingsEditor } from './components/HeadingsEditor';
 import Sidebar from './components/Sidebar';
+import { BodyEditor } from './components/BodyEditor';
+import { ColorsEditor } from './components/ColorsEditor';
 
 export interface IDefaultViewProps extends RouteComponentProps {
   content: string;
@@ -71,6 +73,26 @@ export const DefaultRoute: React.SFC<IDefaultViewProps> = props => {
           title="Tipografia Básica"
         >
           <GeneralTypographyEditor
+            theme={theme}
+            changeThemeProperty={props.changeThemeProperty}
+          />
+        </ConfigSpace>
+        <ConfigSpace
+          isOpen={props.activeSpace === EConfigSpaces.body}
+          changeSpace={props.changeSpace}
+          title="Corpo do texto"
+        >
+          <BodyEditor
+            theme={theme}
+            changeThemeProperty={props.changeThemeProperty}
+          />
+        </ConfigSpace>
+        <ConfigSpace
+          isOpen={props.activeSpace === EConfigSpaces.colors}
+          changeSpace={props.changeSpace}
+          title="Cores"
+        >
+          <ColorsEditor
             theme={theme}
             changeThemeProperty={props.changeThemeProperty}
           />

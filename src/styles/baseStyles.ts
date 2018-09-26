@@ -26,15 +26,15 @@ export const baseStyles = `
   .dropdown-font-name {
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
-  div[id^="font-picker"] .dropdown-button:hover, div[id^="font-picker"] .dropdown-button.expanded, div[id^="font-picker"] .dropdown-button:focus {
-    background: #FcFCFC;
+  .dropdown-button:hover, .dropdown-button.expanded, .dropdown-button:focus {
+    background: #FcFCFC !important;
   }
-  div[id^="font-picker"] .dropdown-button {
-    background: transparent;
+  .dropdown-button {
+    background: transparent !important;
   }
-  div[id^="font-picker"] ul {
-    background: #f1f1f1;
-    z-index: 10;
+  .dropdown-button ~ ul {
+    background: #FcFCFC !important;
+    z-index: 10 !important;
   }
 
   // Related to the color picker

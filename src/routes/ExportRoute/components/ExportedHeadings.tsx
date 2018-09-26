@@ -11,7 +11,7 @@ import {
   displayHeadingMarginTop,
   displayHeadingSize,
 } from '../../../utils/styleCalculations';
-import { TGetHeadingProperty } from '../../../utils/types';
+import { TDisplayHeadingPropertyValue } from '../../../utils/types';
 import {
   CategoryWrapper,
   ExportedList,
@@ -25,7 +25,7 @@ export interface IExportedHeadingsProps {
 
 interface IHeadingProperties {
   name: string;
-  returnFunction: TGetHeadingProperty;
+  returnFunction: TDisplayHeadingPropertyValue;
 }
 
 const headingProperties: IHeadingProperties[] = [
