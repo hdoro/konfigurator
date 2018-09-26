@@ -1,4 +1,18 @@
-import { IUserTheme } from '../RootContainer';
+import { IUserTheme, IHeadingTypography } from '../RootContainer';
+
+const defaultHeadings: IHeadingTypography[] = [
+  { fontSize: 39 },
+  { fontSize: 31 },
+  { fontSize: 25 },
+  { fontSize: 20 },
+];
+
+// For the default values of headings on large screens, we
+// want to move 1 level up in the modular scale
+const defaultHeadingsLg: IHeadingTypography[] = [
+  { fontSize: 49 },
+  ...defaultHeadings.slice(0, defaultHeadings.length - 1),
+];
 
 export const defaultUserTheme: IUserTheme = {
   // Size
@@ -14,8 +28,8 @@ export const defaultUserTheme: IUserTheme = {
     lineHeight: 1.8,
     margin: 2,
   },
-  headings: Array(4).fill({}),
-  headingsLg: Array(4).fill({}),
+  headings: defaultHeadings,
+  headingsLg: defaultHeadingsLg,
   // General
   colors: {
     text: '#333',

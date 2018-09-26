@@ -10,29 +10,21 @@ import { Slider } from '@material-ui/lab';
 import * as React from 'react';
 import styled from 'styled-components';
 import { IHeadingTypography, IUserTheme } from '../../../RootContainer';
-import {
-  defaultHeadingMgBottom,
-  defaultHeadingMgTop,
-  getHeadingFontSize,
-} from '../../../styles/userTheme';
 import { TChangeThemeProp } from '../../../utils/types';
 import {
   displayHeadingSize,
-  returnHeadingSize,
   displayHeadingLineHeight,
-  returnHeadingLineHeight,
   displayHeadingMarginTop,
   displayHeadingMarginBottom,
-  returnHeadingMarginTop,
-  returnHeadingMarginBottom,
 } from '../../../utils/styleCalculations';
 import { headingProperties } from './themeProperties';
+import { getHeadingFontSize } from '../../../styles/generatedUserStyles/getHeadingStyles';
 
 export interface IHeadingsEditorProps {
   theme: IUserTheme;
   headings: IHeadingTypography[];
   changeThemeProperty: TChangeThemeProp;
-  propertyName: string;
+  propertyName: 'headings' | 'headingsLg';
   title: string;
 }
 
@@ -82,12 +74,23 @@ export class HeadingsEditor extends React.Component<
   public changeHeadingsNumber = (isDelete: boolean = false) => (
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
-    const { headings, changeThemeProperty, propertyName } = this.props;
+    const { headings, changeThemeProperty, propertyName, theme } = this.props;
     let newHeadings = [...headings];
     if (isDelete) {
       newHeadings = newHeadings.slice(0, headings.length - 1);
     } else {
-      newHeadings = [...newHeadings, {}];
+      newHeadings = [
+        ...newHeadings,
+        // When creating a new heading, we want to automatically generate the font-size based on the theme rythm with the getHeadingFontSize
+        {
+          fontSize: getHeadingFontSize({
+            h: { fontSize: 0 },
+            i: headings.length,
+            theme,
+            isLarge: propertyName === 'headingsLg',
+          }),
+        },
+      ];
     }
     changeThemeProperty(propertyName, newHeadings);
   };
@@ -120,11 +123,7 @@ export class HeadingsEditor extends React.Component<
                     max={p.max}
                     min={p.min}
                     step={p.step}
-                    value={p.valueFunction(h, {
-                      theme: props.theme,
-                      i,
-                      propertyName: props.propertyName,
-                    })}
+                    value={h[p.name] || 0}
                   />
                   {p.note ? (
                     <Typography variant="caption">{p.note}</Typography>

@@ -22,15 +22,4 @@ export type TDisplayHeadingPropertyValue = (
   theme: IUserTheme
 ) => string;
 
-export type TReturnHeadingPropertyValue = (
-  h: IHeadingTypography,
-  options: {
-    i?: number;
-    theme?: IUserTheme;
-    propertyName?: string;
-  }
-) => number;
-
 export type TDisplayBodyPropertyValue = (theme: IUserTheme) => string;
-
-export type TReturnBodyPropertyValue = (theme: IUserTheme) => number;

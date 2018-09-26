@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { IUserTheme } from '../../../RootContainer';
 import {
-  defaultHeadingMgBottom,
-  defaultHeadingMgTop,
-  getHeadingFontSize,
-} from '../../../styles/userTheme';
-import {
   displayHeadingLineHeight,
   displayHeadingMarginBottom,
   displayHeadingMarginTop,

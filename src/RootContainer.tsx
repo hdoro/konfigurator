@@ -14,8 +14,7 @@ export enum EConfigSpaces {
 }
 
 export interface IHeadingTypography {
-  fontSize?: number;
-  fontSizeLg?: number;
+  fontSize: number;
   marginTop?: number;
   marginBottom?: number;
   lineHeight?: number;

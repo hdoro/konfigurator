@@ -3,11 +3,6 @@ import * as React from 'react';
 import { ColorResult, TwitterPicker } from 'react-color';
 import styled from 'styled-components';
 import { IUserTheme } from '../../../RootContainer';
-import {
-  defaultHeadingMgBottom,
-  defaultHeadingMgTop,
-  getHeadingFontSize,
-} from '../../../styles/userTheme';
 import { TChangeThemeProp } from '../../../utils/types';
 
 export interface IGeneralTypographyEditorProps {

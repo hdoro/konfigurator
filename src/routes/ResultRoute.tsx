@@ -7,7 +7,7 @@ import Frame, { FrameContextConsumer } from 'react-frame-component';
 import * as Markdown from 'react-markdown';
 import styled, { StyleSheetManager } from 'styled-components';
 import { IUserTheme } from '../RootContainer';
-import { GlobalUserStyles } from '../styles/userTheme';
+import { GlobalUserStyles } from '../styles/generatedUserStyles/GlobalUserStyles';
 
 export interface IResultsDisplayProps extends RouteComponentProps {
   content: string;

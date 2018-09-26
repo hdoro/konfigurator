@@ -3,11 +3,6 @@ import { Slider } from '@material-ui/lab';
 import * as React from 'react';
 import styled from 'styled-components';
 import { IUserTheme } from '../../../RootContainer';
-import {
-  defaultHeadingMgBottom,
-  defaultHeadingMgTop,
-  getHeadingFontSize,
-} from '../../../styles/userTheme';
 import { TChangeThemeProp } from '../../../utils/types';
 import { bodyProperties } from './themeProperties';
 
@@ -40,7 +35,7 @@ export const BodyEditor: React.SFC<IGeneralTypographyEditorProps> = props => {
             max={p.max}
             min={p.min}
             step={p.step}
-            value={p.valueFunction(theme)}
+            value={theme.body[p.name]}
           />
           {p.note ? <Typography variant="caption">{p.note}</Typography> : null}
         </PropertyWrapper>

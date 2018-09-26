@@ -1,25 +1,7 @@
-import { appTheme } from './appTheme';
-
-export const baseStyles = `
-  *, *::before, *::after {
-    box-sizing: inherit;
-    font-family: inherit;
-  }
-  *::-webkit-scrollbar {
-    width: 5px;
-  }
-  *::-webkit-scrollbar-thumb {
-    background: ${appTheme.primary};
-  }
-
-  html {
-    box-sizing: border-box;
-    overflow-x: hidden;
-  }
-
+// Styles applied to the whole application
+export const appSpecificStyles = `
   body {
-    margin: 0;
-    overflow-x: hidden;
+    background: white;
   }
 
   // Related to the font family dropdown selector
@@ -43,4 +25,4 @@ export const baseStyles = `
   }
 `;
 
-export default baseStyles;
+export default appSpecificStyles;
