@@ -54,12 +54,6 @@ export class HeadingsEditor extends React.Component<
       const fontSize =
         Math.pow(this.state.currentRythm, headings.length - i) *
         (propertyName === 'headingsLg' ? theme.fontSizeLg : theme.fontSize);
-      console.log(
-        i,
-        fontSize,
-        theme.fontSize,
-        Math.pow(this.state.currentRythm, headings.length - i)
-      );
       return {
         ...h,
         fontSize,
@@ -73,7 +67,7 @@ export class HeadingsEditor extends React.Component<
     value: number
   ) => void = (e, value) => {
     this.setState({
-      currentRythm: +value.toFixed(2),
+      currentRythm: value ? +value.toFixed(2) : 0,
     });
   };
 
@@ -86,7 +80,7 @@ export class HeadingsEditor extends React.Component<
       ...headings.slice(0, index),
       {
         ...headings[index],
-        [headingPropName]: +value.toFixed(2),
+        [headingPropName]: value ? +value.toFixed(2) : 0,
       },
       ...headings.slice(index + 1),
     ];

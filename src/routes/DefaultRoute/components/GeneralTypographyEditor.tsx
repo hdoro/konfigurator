@@ -21,7 +21,7 @@ export class GeneralTypographyEditor extends React.Component<
   {}
 > {
   public handleSlider = (propName: string) => (e: any, value: number) => {
-    this.props.changeThemeProperty(propName, value);
+    this.props.changeThemeProperty(propName, value ? +value.toFixed(2) : 0);
   };
 
   public handleFonts = (isHeading: boolean = false) => (e: any) => {
