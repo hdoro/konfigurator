@@ -8,6 +8,7 @@ import * as Markdown from 'react-markdown';
 import styled, { StyleSheetManager } from 'styled-components';
 import { IUserTheme } from '../RootContainer';
 import { GlobalUserStyles } from '../styles/generatedUserStyles/GlobalUserStyles';
+import { FontsLoader } from '../components/FontsLoader';
 
 export interface IResultsDisplayProps extends RouteComponentProps {
   content: string;
@@ -58,19 +59,20 @@ export class ResultRoute extends React.Component<
 
   public render() {
     const {
-      props,
+      props: { content, userTheme: theme },
       state: { isMobile },
     } = this;
     return (
       <DisplayContainer>
-        <Wrapper isMobile={isMobile} maxWidth={props.userTheme.body.maxWidth}>
+        <Wrapper isMobile={isMobile} maxWidth={theme.body.maxWidth}>
           <Frame>
             <FrameContextConsumer>
               {(frameContext: any) => (
                 <StyleSheetManager target={frameContext.document.head}>
                   <>
-                    <Markdown source={props.content} />
-                    <GlobalUserStyles theme={props.userTheme} />
+                    <Markdown source={content} />
+                    <GlobalUserStyles theme={theme} />
+                    <FontsLoader theme={theme} />
                   </>
                 </StyleSheetManager>
               )}

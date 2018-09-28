@@ -43,6 +43,8 @@ export interface IUserTheme {
   familyCategoryHeading?: 'sans-serif' | 'serif' | 'monospace';
   // Tag-specific typography
   body: IBodyTypography;
+  headingWeight: number;
+  bodyWeight: number;
   headings: IHeadingTypography[];
   headingsLg: IHeadingTypography[];
   // General

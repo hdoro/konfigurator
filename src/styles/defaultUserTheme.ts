@@ -27,6 +27,8 @@ export const defaultUserTheme: IUserTheme = {
     lineHeight: 1.8,
     margin: 2,
   },
+  bodyWeight: 400,
+  headingWeight: 700,
   headings: defaultHeadings,
   headingsLg: defaultHeadingsLg,
   // General

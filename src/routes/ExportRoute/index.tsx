@@ -8,6 +8,8 @@ import { IUserTheme } from '../../RootContainer';
 import { DisplayContainer } from '../ResultRoute';
 import { ExportDialog } from './components/ExportDialog';
 import { ExportedContent } from './components/ExportedContent';
+import { GlobalUserStyles } from '../../styles/generatedUserStyles/GlobalUserStyles';
+import { FontsLoader } from '../../components/FontsLoader';
 
 export interface IExportRouteProps extends RouteComponentProps {
   userTheme: IUserTheme;
@@ -60,7 +62,11 @@ export class ExportRoute extends React.Component<
             <FrameContextConsumer>
               {(frameContext: any) => (
                 <StyleSheetManager target={frameContext.document.head}>
-                  <ExportedContent theme={theme} />
+                  <>
+                    <ExportedContent theme={theme} />
+                    <GlobalUserStyles theme={theme} />
+                    <FontsLoader theme={theme} />
+                  </>
                 </StyleSheetManager>
               )}
             </FrameContextConsumer>

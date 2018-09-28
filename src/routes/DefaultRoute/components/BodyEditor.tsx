@@ -18,7 +18,7 @@ const PropertyWrapper = styled.div`
 
 export const BodyEditor: React.SFC<IGeneralTypographyEditorProps> = props => {
   const handleSlider = (propName: string) => (e: any, value: number) => {
-    props.changeThemeProperty(propName, value);
+    props.changeThemeProperty(`body.${propName}`, value);
   };
 
   const { theme } = props;
@@ -26,6 +26,7 @@ export const BodyEditor: React.SFC<IGeneralTypographyEditorProps> = props => {
     <>
       {bodyProperties.map(p => (
         <PropertyWrapper key={p.name}>
+          {/* {console.log(theme.body)} */}
           <Typography id={`typography__body-${p.name}`}>
             {p.label}: {p.displayFunction(theme)}
           </Typography>
@@ -35,7 +36,7 @@ export const BodyEditor: React.SFC<IGeneralTypographyEditorProps> = props => {
             max={p.max}
             min={p.min}
             step={p.step}
-            value={theme.body[p.name]}
+            value={theme.body[p.name] || 0}
           />
           {p.note ? <Typography variant="caption">{p.note}</Typography> : null}
         </PropertyWrapper>

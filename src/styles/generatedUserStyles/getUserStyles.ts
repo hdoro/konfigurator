@@ -5,7 +5,7 @@ import { getHeadingStyles } from './getHeadingStyles';
 export const getUserStyles = (theme: IUserTheme) => `
   :root {
     font-size: ${theme.fontSize}px;
-    font-family: '${theme.fontFamilyBody}', ${fontFallbacks[
+    font-family: "${theme.fontFamilyBody}", ${fontFallbacks[
   theme.familyCategoryBody
 ] || fontFallbacks['sans-serif']};
     color: ${theme.colors.text};
@@ -13,15 +13,17 @@ export const getUserStyles = (theme: IUserTheme) => `
   p, ul, ol {
     line-height: ${theme.body.lineHeight};
     margin: ${theme.body.margin}rem 0;
+    font-weight: ${theme.bodyWeight};
   }
   li {
     margin: ${theme.body.margin / 2}rem 0;
     line-height: inherit;
   }
   h1, h2, h3, h4 {
+    font-weight: ${theme.headingWeight};
     font-family: ${
       theme.fontFamilyHeading && theme.familyCategoryHeading
-        ? `'${theme.fontFamilyHeading}', ${fontFallbacks[
+        ? `"${theme.fontFamilyHeading}", ${fontFallbacks[
             theme.familyCategoryHeading
           ] || fontFallbacks['sans-serif']}`
         : 'inherit'
