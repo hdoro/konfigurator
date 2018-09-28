@@ -12,15 +12,16 @@ export interface IExportedBasicProps {
 
 export const ExportedFamily: React.SFC<IExportedBasicProps> = props => {
   const { theme } = props;
+  const defaultFontFamily = "Systems' default font families";
   return (
     <CategoryWrapper>
       <h3>Família da fonte</h3>
       <ExportedList>
         <ExportedListItem name="Corpo de texto">
-          {theme.fontFamilyBody}
+          {theme.fontFamilyBody || defaultFontFamily}
         </ExportedListItem>
         <ExportedListItem name="Cabeçalhos">
-          {theme.fontFamilyHeading || theme.fontFamilyBody}
+          {theme.fontFamilyHeading || theme.fontFamilyBody || defaultFontFamily}
         </ExportedListItem>
       </ExportedList>
     </CategoryWrapper>

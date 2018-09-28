@@ -20,7 +20,6 @@ import { ColorsEditor } from './components/ColorsEditor';
 export interface IDefaultViewProps extends RouteComponentProps {
   content: string;
   userTheme: IUserTheme;
-  changeThemeRoot: TInputHandler;
   activeSpace: EConfigSpaces | undefined;
   changeSpace: TChangeConfigSpace;
   changeThemeProperty: TChangeThemeProp;
@@ -44,7 +43,6 @@ export const DefaultRoute: React.SFC<IDefaultViewProps> = props => {
           activeSpace={props.activeSpace}
           changeSpace={props.changeSpace}
           userTheme={theme}
-          changeThemeRoot={props.changeThemeRoot}
           resetTheme={props.resetTheme}
         />
         <ConfigSpace

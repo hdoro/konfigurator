@@ -6,6 +6,7 @@ import {
   defaultHeadingMgTop,
   defaultHeadingMgBottom,
 } from '../styles/generatedUserStyles/userStylesConstants';
+import { cutDecimals } from './strings';
 
 // Functions that return strings for displaying current theme values
 
@@ -23,7 +24,7 @@ export const displayBodyMargin: TDisplayBodyPropertyValue = theme =>
     .margin * theme.fontSizeLg}px (telas grandes)`;
 
 export const displayHeadingSize: TDisplayHeadingPropertyValue = (h, i, theme) =>
-  `${+h.fontSize.toFixed(2)}px`;
+  `${cutDecimals(h.fontSize)}px`;
 
 export const displayHeadingLineHeight: TDisplayHeadingPropertyValue = (
   h,
@@ -42,8 +43,8 @@ export const displayHeadingMarginTop: TDisplayHeadingPropertyValue = (
   // If we have a marginTop property, we'll use it as `${marginTop}px`
   // Else, check if there's a font-size, if not, get the rythm-based font-size, and multiply either by the defaultHeadingMgTop 'em' value
   // Then, round it to 2 decimal places
-  `${+(h.marginTop ? h.marginTop : h.fontSize * defaultHeadingMgTop).toFixed(
-    2
+  `${cutDecimals(
+    h.marginTop ? h.marginTop : h.fontSize * defaultHeadingMgTop
   )}px`;
 
 export const displayHeadingMarginBottom: TDisplayHeadingPropertyValue = (
@@ -51,7 +52,6 @@ export const displayHeadingMarginBottom: TDisplayHeadingPropertyValue = (
   i,
   theme
 ) =>
-  `${+(h.marginBottom
-    ? h.marginBottom
-    : theme.fontSize * defaultHeadingMgBottom
-  ).toFixed(2)}px`;
+  `${cutDecimals(
+    h.marginBottom ? h.marginBottom : theme.fontSize * defaultHeadingMgBottom
+  )}px`;

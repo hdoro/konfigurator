@@ -19,6 +19,7 @@ import {
   displayHeadingMarginBottom,
 } from '../../../utils/styleCalculations';
 import { headingProperties } from './themeProperties';
+import { cutDecimals } from '../../../utils/strings';
 
 export interface IHeadingsEditorProps {
   theme: IUserTheme;
@@ -67,7 +68,7 @@ export class HeadingsEditor extends React.Component<
     value: number
   ) => void = (e, value) => {
     this.setState({
-      currentRythm: value ? +value.toFixed(2) : 0,
+      currentRythm: value ? cutDecimals(value) : 0,
     });
   };
 
@@ -80,7 +81,7 @@ export class HeadingsEditor extends React.Component<
       ...headings.slice(0, index),
       {
         ...headings[index],
-        [headingPropName]: value ? +value.toFixed(2) : 0,
+        [headingPropName]: value ? cutDecimals(value) : 0,
       },
       ...headings.slice(index + 1),
     ];

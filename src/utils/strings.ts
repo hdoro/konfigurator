@@ -5,3 +5,7 @@ export const removeWhitespace = (str: string) => {
 export const formatFontName = (font: string) => {
   return font.replace(/\s/g, '+');
 };
+
+export const cutDecimals = (num: number, decimals: number = 2) => {
+  return +num.toFixed(decimals);
+};

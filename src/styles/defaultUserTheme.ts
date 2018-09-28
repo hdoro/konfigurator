@@ -19,7 +19,7 @@ export const defaultUserTheme: IUserTheme = {
   fontSize: 16,
   fontSizeLg: 20,
   // Family
-  fontFamilyBody: 'Roboto',
+  fontFamilyBody: '',
   familyCategoryBody: 'sans-serif',
   // Tag-specific
   body: {

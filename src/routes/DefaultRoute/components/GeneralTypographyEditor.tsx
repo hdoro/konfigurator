@@ -5,6 +5,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { IUserTheme } from '../../../RootContainer';
 import { TChangeThemeProp } from '../../../utils/types';
+import { cutDecimals } from '../../../utils/strings';
 
 export interface IGeneralTypographyEditorProps {
   theme: IUserTheme;
@@ -21,7 +22,7 @@ export class GeneralTypographyEditor extends React.Component<
   {}
 > {
   public handleSlider = (propName: string) => (e: any, value: number) => {
-    this.props.changeThemeProperty(propName, value ? +value.toFixed(2) : 0);
+    this.props.changeThemeProperty(propName, value ? cutDecimals(value) : 0);
   };
 
   public handleFonts = (isHeading: boolean = false) => (e: any) => {
@@ -101,7 +102,7 @@ export class GeneralTypographyEditor extends React.Component<
             aria-labelledby={`typography__bodyWeight`}
             onChange={this.handleSlider('bodyWeight')}
             min={100}
-            max={800}
+            max={900}
             step={100}
             value={theme.bodyWeight}
           />
@@ -114,7 +115,7 @@ export class GeneralTypographyEditor extends React.Component<
             aria-labelledby={`typography__headingWeight`}
             onChange={this.handleSlider('headingWeight')}
             min={100}
-            max={800}
+            max={900}
             step={100}
             value={theme.headingWeight}
           />

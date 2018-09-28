@@ -21,13 +21,17 @@ import {
   TChangeConfigSpace,
   TInputHandler,
 } from '../../../utils/types';
+import { ResetDialog } from './ResetDialog';
 
 export interface ISidebarProps extends WithStyles<typeof styles> {
   userTheme: IUserTheme;
-  changeThemeRoot: TInputHandler;
   activeSpace: EConfigSpaces | undefined;
   changeSpace: TChangeConfigSpace;
   resetTheme: NoParamsAny;
+}
+
+export interface ISidebarState {
+  isResetDialogOpen: boolean;
 }
 
 export const fixedSidebarWidth = 70;
@@ -59,70 +63,87 @@ const styles = (theme: Theme) =>
     },
   });
 
-export const Sidebar: React.SFC<ISidebarProps> = props => {
-  const { classes, changeSpace, activeSpace } = props;
-  const availableSpaces = [
-    {
-      space: EConfigSpaces.typography,
-      icon: (isActive: boolean) => (
-        <FormatIcon className={isActive ? classes.activeIcon : ''} />
-      ),
-      title: 'Tipografia básica',
-    },
-    {
-      space: EConfigSpaces.body,
-      icon: (isActive: boolean) => (
-        <ParagraphIcon className={isActive ? classes.activeIcon : ''} />
-      ),
-      title: 'Corpo do texto',
-    },
-    {
-      space: EConfigSpaces.headings,
-      icon: (isActive: boolean) => (
-        <TitleIcon className={isActive ? classes.activeIcon : ''} />
-      ),
-      title: 'Cabeçalhos',
-    },
-    {
-      space: EConfigSpaces.colors,
-      icon: (isActive: boolean) => (
-        <ColorsIcon className={isActive ? classes.activeIcon : ''} />
-      ),
-      title: 'Cores',
-    },
-  ];
-  return (
-    <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
-      <div className={classes.spacer} />
-      <div style={{ flex: 1 }}>
-        {availableSpaces.map(s => (
-          <div key={s.title}>
-            <Tooltip title={s.title} placement="right">
-              <IconButton onClick={changeSpace(s.space)}>
-                {s.icon(activeSpace === s.space)}
+export class Sidebar extends React.Component<ISidebarProps, ISidebarState> {
+  public state = {
+    isResetDialogOpen: false,
+  };
+
+  public toggleModal = () => {
+    this.setState(prevState => ({
+      isResetDialogOpen: !prevState.isResetDialogOpen,
+    }));
+  };
+
+  public render() {
+    const { classes, changeSpace, activeSpace, resetTheme } = this.props;
+    const availableSpaces = [
+      {
+        space: EConfigSpaces.typography,
+        icon: (isActive: boolean) => (
+          <FormatIcon className={isActive ? classes.activeIcon : ''} />
+        ),
+        title: 'Tipografia básica',
+      },
+      {
+        space: EConfigSpaces.body,
+        icon: (isActive: boolean) => (
+          <ParagraphIcon className={isActive ? classes.activeIcon : ''} />
+        ),
+        title: 'Corpo do texto',
+      },
+      {
+        space: EConfigSpaces.headings,
+        icon: (isActive: boolean) => (
+          <TitleIcon className={isActive ? classes.activeIcon : ''} />
+        ),
+        title: 'Cabeçalhos',
+      },
+      {
+        space: EConfigSpaces.colors,
+        icon: (isActive: boolean) => (
+          <ColorsIcon className={isActive ? classes.activeIcon : ''} />
+        ),
+        title: 'Cores',
+      },
+    ];
+    return (
+      <>
+        <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
+          <div className={classes.spacer} />
+          <div style={{ flex: 1 }}>
+            {availableSpaces.map(s => (
+              <div key={s.title}>
+                <Tooltip title={s.title} placement="right">
+                  <IconButton onClick={changeSpace(s.space)}>
+                    {s.icon(activeSpace === s.space)}
+                  </IconButton>
+                </Tooltip>
+              </div>
+            ))}
+          </div>
+          <div>
+            <Tooltip title="Exportar configurações" placement="right">
+              <Link to="/export">
+                <IconButton>
+                  <SpellcheckIcon />
+                </IconButton>
+              </Link>
+            </Tooltip>
+            <Tooltip title="Resetar configurações" placement="right">
+              <IconButton onClick={this.toggleModal}>
+                <RestoreIcon />
               </IconButton>
             </Tooltip>
           </div>
-        ))}
-      </div>
-      <div>
-        <Tooltip title="Exportar configurações" placement="right">
-          <Link to="/export">
-            <IconButton>
-              <SpellcheckIcon />
-            </IconButton>
-          </Link>
-        </Tooltip>
-        <Tooltip title="Resetar configurações" placement="right">
-          <IconButton onClick={props.resetTheme}>
-            <RestoreIcon />
-          </IconButton>
-        </Tooltip>
-      </div>
-    </Drawer>
-  );
-};
-
-Sidebar.displayName = 'Sidebar';
+        </Drawer>
+        <ResetDialog
+          closeModal={this.toggleModal}
+          resetTheme={resetTheme}
+          isOpen={this.state.isResetDialogOpen}
+        />
+      </>
+    );
+  }
+}
 
 export default withStyles(styles, { withTheme: true })(Sidebar);

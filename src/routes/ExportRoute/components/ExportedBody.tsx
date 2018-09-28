@@ -6,6 +6,7 @@ import {
   ExportedListItem,
   PropertyWrapper,
 } from './exportComponents';
+import { cutDecimals } from '../../../utils/strings';
 
 export interface IExportedBasicProps {
   theme: IUserTheme;
@@ -16,6 +17,7 @@ export const ExportedBody: React.SFC<IExportedBasicProps> = props => {
   return (
     <CategoryWrapper>
       <h3>Corpo de texto</h3>
+      <p>Font-weight: {theme.bodyWeight}</p>
       <PropertyWrapper>
         <div>
           <h4>Telas pequenas</h4>
@@ -25,7 +27,7 @@ export const ExportedBody: React.SFC<IExportedBasicProps> = props => {
               px
             </ExportedListItem>
             <ExportedListItem name="line-height">
-              {theme.body.lineHeight * 100}%
+              {cutDecimals(theme.body.lineHeight * 100)}%
             </ExportedListItem>
             <ExportedListItem name="margin">
               {theme.body.margin * theme.fontSize}
@@ -41,7 +43,10 @@ export const ExportedBody: React.SFC<IExportedBasicProps> = props => {
               px
             </ExportedListItem>
             <ExportedListItem name="line-height">
-              {(theme.body.lineHeightLg || theme.body.lineHeight) * 100}%
+              {cutDecimals(
+                (theme.body.lineHeightLg || theme.body.lineHeight) * 100
+              )}
+              %
             </ExportedListItem>
             <ExportedListItem name="margin">
               {theme.body.margin * theme.fontSizeLg}

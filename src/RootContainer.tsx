@@ -5,6 +5,7 @@ import defaultMarkdown from './defaultMarkdown';
 import { DefaultRoute } from './routes/DefaultRoute';
 import { EditorRoute } from './routes/EditorRoute';
 import { defaultUserTheme } from './styles/defaultUserTheme';
+import { cutDecimals } from './utils/strings';
 
 export enum EConfigSpaces {
   typography,
@@ -78,7 +79,7 @@ export class RootContainer extends React.Component<{}, IRootContainerState> {
 
     // If it's a number, round it to 2 places to avoid useless decimals
     if (typeof propValue === 'number') {
-      value = +propValue.toFixed(2);
+      value = cutDecimals(propValue);
     }
 
     // Check if the name is split by a dot, meaning it's
@@ -103,20 +104,6 @@ export class RootContainer extends React.Component<{}, IRootContainerState> {
         },
       }));
     }
-  };
-
-  public changeThemeRoot = (propName: string) => (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    e.preventDefault();
-    e.persist();
-    this.setState(prevState => ({
-      ...prevState,
-      userTheme: {
-        ...prevState.userTheme,
-        [propName]: e.target.value,
-      },
-    }));
   };
 
   public changeOpenedConfigSpace = (
@@ -182,7 +169,6 @@ export class RootContainer extends React.Component<{}, IRootContainerState> {
           default={true}
           content={content}
           userTheme={userTheme}
-          changeThemeRoot={this.changeThemeRoot}
           activeSpace={activeConfigSpace}
           changeSpace={this.changeOpenedConfigSpace}
           changeThemeProperty={this.changeThemeProp}
