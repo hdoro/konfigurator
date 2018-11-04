@@ -55,7 +55,13 @@ export const ConfigSpace: React.SFC<IConfigSpaceProps> = props => {
         <IconButton onClick={props.changeSpace()}>
           <ChevronLeftIcon />
         </IconButton>
-        <Typography style={{ marginLeft: '.5rem' }} variant="subheading">
+        <Typography
+          style={{
+            marginLeft: '.5rem',
+            textTransform: 'uppercase',
+            fontSize: '14px',
+          }}
+        >
           {props.title}
         </Typography>
       </div>

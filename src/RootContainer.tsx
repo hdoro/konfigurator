@@ -31,6 +31,8 @@ export interface IBodyTypography {
 export interface IThemeColors {
   text: string;
   heading?: string;
+  link: string;
+  bg: string;
 }
 
 export interface IUserTheme {

@@ -4,6 +4,7 @@ import { ColorResult, TwitterPicker } from 'react-color';
 import styled from 'styled-components';
 import { IUserTheme } from '../../../RootContainer';
 import { TChangeThemeProp } from '../../../utils/types';
+import ColorPicker from './ColorPicker';
 
 export interface IGeneralTypographyEditorProps {
   theme: IUserTheme;
@@ -17,33 +18,32 @@ const PropertyWrapper = styled.div`
 
 export const ColorsEditor: React.SFC<IGeneralTypographyEditorProps> = props => {
   const { theme } = props;
-  const handleColor = (colorName: string) => (e: ColorResult) => {
-    props.changeThemeProperty(`colors.${colorName}`, e.hex);
-  };
   return (
     <>
-      <Typography variant="body2" style={{ margin: '1.5rem 0 .5rem' }}>
-        Cores
-      </Typography>
-      <PropertyWrapper>
-        <Typography>Cor de texto</Typography>
-        <TwitterPicker
-          color={theme.colors.text}
-          onChange={handleColor('text')}
-          colors={['#777', '#666', '#555', '#444', '#333', '#222', '#111']}
-        />
-      </PropertyWrapper>
-      <PropertyWrapper>
-        <Typography>Cor de cabeçalhos</Typography>
-        <TwitterPicker
-          color={theme.colors.heading || theme.colors.text}
-          onChange={handleColor('heading')}
-          colors={['#777', '#666', '#555', '#444', '#333', '#222', '#111']}
-        />
-        <Typography variant="caption">
-          Pode ser a mesma cor do texto ;)
-        </Typography>
-      </PropertyWrapper>
+      <ColorPicker
+        value={props.theme.colors.text}
+        title="Cor de texto"
+        id="text"
+        changeThemeProperty={props.changeThemeProperty}
+      />
+      <ColorPicker
+        value={theme.colors.heading || theme.colors.text}
+        title="Cor de cabeçalhos"
+        id="heading"
+        changeThemeProperty={props.changeThemeProperty}
+      />
+      <ColorPicker
+        value={theme.colors.link}
+        title="Cor de links"
+        id="link"
+        changeThemeProperty={props.changeThemeProperty}
+      />
+      <ColorPicker
+        value={theme.colors.bg}
+        title="Cor de background"
+        id="bg"
+        changeThemeProperty={props.changeThemeProperty}
+      />
     </>
   );
 };

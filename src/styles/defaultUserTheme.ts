@@ -34,6 +34,8 @@ export const defaultUserTheme: IUserTheme = {
   // General
   colors: {
     text: '#333',
+    link: '#1a0dab',
+    bg: '#fff',
   },
 };
 

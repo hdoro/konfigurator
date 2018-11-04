@@ -135,10 +135,11 @@ export class GeneralTypographyEditor extends React.Component<
               categories: ['sans-serif', 'serif', 'monospace'],
               sort: 'popularity',
               name: 'headings',
+              limit: 300,
             }}
           />
         </PropertyWrapper>
-        <PropertyWrapper>
+        <PropertyWrapper style={{ paddingBottom: '5rem' }}>
           <Typography id={`typography__font-family`}>Cabeçalhos:</Typography>
           <FontPicker
             activeFont={theme.fontFamilyHeading || theme.fontFamilyBody}
@@ -148,6 +149,7 @@ export class GeneralTypographyEditor extends React.Component<
               categories: ['sans-serif', 'serif', 'monospace'],
               sort: 'popularity',
               name: 'headingsLg',
+              limit: 300,
             }}
           />
         </PropertyWrapper>

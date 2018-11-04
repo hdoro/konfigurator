@@ -10,6 +10,9 @@ export const getUserStyles = (theme: IUserTheme) => `
 ] || fontFallbacks['sans-serif']};
     color: ${theme.colors.text};
   }
+  body {
+    background: ${theme.colors.bg};
+  }
   p, ul, ol {
     line-height: ${theme.body.lineHeight};
     margin: ${theme.body.margin}rem 0;
@@ -35,6 +38,12 @@ export const getUserStyles = (theme: IUserTheme) => `
   h1 ~ p, h2 ~ p, h3 ~ p, h4 ~ p {
     margin-top: 0;
   }
+
+  // Coloring links
+  a {
+    color: ${theme.colors.link};
+  }
+
   ${theme.headings
     .map((heading, i) => getHeadingStyles(heading, i))
     .join('\n')};
